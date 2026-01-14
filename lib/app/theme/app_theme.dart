@@ -41,7 +41,7 @@ class AppTheme {
     primaryColor: AppColors.primaryGoldDark,
     scaffoldBackgroundColor: Colors.black,
 
-    // ✅ Set SF Pro as default font
+    // Set SF Pro as default font
     fontFamily: 'SF Pro',
 
     textTheme: const TextTheme(

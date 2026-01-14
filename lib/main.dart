@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
             title: 'Quantity',
           debugShowCheckedModeBanner: false,
-          // Theme
+
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
@@ -42,10 +42,7 @@ class MyApp extends StatelessWidget {
           defaultTransition: Transition.cupertino,
           transitionDuration: const Duration(milliseconds: 300),
 
-
-
-
-          initialRoute: AppRoutes.splash,
+          initialRoute: AppRoutes.home,
           navigatorKey: Get.key,
           getPages: AppRoutes.pages,
         );

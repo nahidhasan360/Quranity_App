@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:quranity/app/routes/app_routes.dart';
 import 'package:quranity/core/constants/app_assets.dart';

@@ -57,12 +57,12 @@ class OnboardingController extends GetxController {
         curve: Curves.easeInOut,
       );
     } else {
-      Get.offAllNamed(AppRoutes.home);
+      Get.offAllNamed(AppRoutes.registrationScreen);
     }
   }
 
   void skipToEnd() {
-    Get.offAllNamed(AppRoutes.home);
+    Get.offAllNamed(AppRoutes.registrationScreen);
   }
 
   bool get isLastPage => currentPage.value == pages.length - 1;

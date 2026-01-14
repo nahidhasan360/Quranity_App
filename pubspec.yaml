@@ -31,6 +31,7 @@ dependencies:
 
   # Page Indicator
   smooth_page_indicator: ^1.2.0+3
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -45,31 +46,17 @@ flutter:
     - assets/background/
     - assets/icons/
     - assets/images/
+    - assets/fonts/
 
-  # ✅ Fonts Section (Inside flutter:)
+
   fonts:
-    - family: SF Pro Display
+    - family: SF Pro
       fonts:
-        - asset: assets/fonts/SFPRODISPLAYREGULAR.OTF
-        - asset: assets/fonts/SFPRODISPLAYBOLD.OTF
-          weight: 700
-        - asset: assets/fonts/SFPRODISPLAYMEDIUM.OTF
+        - asset: assets/fonts/SF-Pro-Text-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro-Text-Medium.otf
           weight: 500
-        - asset: assets/fonts/SFPRODISPLAYSEMIBOLDITALIC.OTF
+        - asset: assets/fonts/SF-Pro-Text-Semibold.otf
           weight: 600
-          style: italic
-        - asset: assets/fonts/SFPRODISPLAYHEAVYITALIC.OTF
-          weight: 800
-          style: italic
-        - asset: assets/fonts/SFPRODISPLAYLIGHTITALIC.OTF
-          weight: 300
-          style: italic
-        - asset: assets/fonts/SFPRODISPLAYTHINITALIC.OTF
-          weight: 100
-          style: italic
-        - asset: assets/fonts/SFPRODISPLAYULTRALIGHTITALIC.OTF
-          weight: 200
-          style: italic
-        - asset: assets/fonts/SFPRODISPLAYBLACKITALIC.OTF
-          weight: 900
-          style: italic
+        - asset: assets/fonts/SF-Pro-Text-Bold.otf
+          weight: 700

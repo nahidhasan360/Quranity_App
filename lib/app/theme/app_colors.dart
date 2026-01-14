@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class AppColors {
   // Primary Gold Color
-  static const Color primaryGold = Color(0xFFFEE685);
+  static const Color primaryGold = Color(0xFFCCA766);
   static const Color primaryGoldLight = Color(0xFFD9B67A);
   static const Color primaryGoldDark = Color(0xFFB8955C);
   static const Color buttonColor = Color(0xFFCCA766);
@@ -31,6 +31,7 @@ class AppColors {
   static const Color textDarkGray = Color(0xFF808080);
   static const Color textMediumGray = Color(0xFF9E9E9E);
   static const Color textLightGray = Color(0xFFB0B0B0);
+  static const Color subtitle = Color(0xFFBFBFBF);
 
   // Accent Colors
   static const Color makruhRed = Color(0xFFFF6B6B);

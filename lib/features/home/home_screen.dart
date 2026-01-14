@@ -180,8 +180,8 @@ class IslamicPrayerTimesPage extends StatelessWidget {
                 ),
                 child:  SvgPicture.asset(
                     AppAssets.notification,
-                    width: 20.w,
-                    height: 20.h,
+                    width: 10.w,
+                    height: 10.h,
                     // colorFilter: ColorFilter.mode(
                     //   AppColors.primaryGold,
                     //   BlendMode.srcIn,
