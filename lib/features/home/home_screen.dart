@@ -37,9 +37,10 @@ class HomeScreen extends GetView<HomeController> {
                   parent: BouncingScrollPhysics(),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(10.w), // Global 10.w padding
+                  padding: EdgeInsets.symmetric(horizontal: 13.h), // Global 10.w padding
                   child: Column(
                     children: [
+                      SizedBox(height: 20.h),
                       _buildTopBar(),
                       SizedBox(height: 20.h),
                       const TimeCardsWidget(),
@@ -53,7 +54,7 @@ class HomeScreen extends GetView<HomeController> {
                       const PrayerTimesGrid(),
                       SizedBox(height: 20.h),
                       const MakruhAndNafalSection(),
-                      SizedBox(height: 90.h),
+                      SizedBox(height: 120.h),
                     ],
                   ),
                 ),

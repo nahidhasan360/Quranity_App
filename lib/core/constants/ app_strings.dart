@@ -529,6 +529,10 @@ class AppStrings {
   static const String newLabel = 'New';
   static const String watchNow = 'Watch Now';
 
+  // Video Player Screen
+  static const String description = 'Description';
+  static const String continueWatching = 'Continue Watching';
+
   // ============================================================================
   // LIMIT DIALOG
   // ============================================================================

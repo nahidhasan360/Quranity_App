@@ -57,4 +57,15 @@ class AppColors {
 
 
 
+
+
+
+
+
+
+
+  static const Color navbarBackground = Color(0xFF1C1C1C);
+  static const Color unselectedGrey = Color(0xFF8E8E8E);
+
+
 }

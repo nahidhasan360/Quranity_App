@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:quranity/app/routes/app_routes.dart';
 import 'package:quranity/app/theme/app_colors.dart';
 import '../../core/constants/ app_strings.dart';
 import '../../core/constants/app_assets.dart';
@@ -16,13 +18,17 @@ class StoriesScreen extends GetView<StoriesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true, // ✅ KEEP IT
       body: GradientBackground(
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 20,),
+              SizedBox(height: 20.h),
               // Top Header
-              _buildTopBar(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: _buildTopBar(),
+              ),
 
               // Stories Content
               Expanded(
@@ -40,11 +46,11 @@ class StoriesScreen extends GetView<StoriesController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         _buildSectionTitle(),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         _buildStoryList(),
-                        const SizedBox(height: 20),
+                        SizedBox(height: 120.h), // ✅ CHANGED: 80.h → 120.h (navbar 110.h + 10.h extra)
                       ],
                     ),
                   );
@@ -54,7 +60,7 @@ class StoriesScreen extends GetView<StoriesController> {
           ),
         ),
       ),
-      bottomNavigationBar: const CustomNavbar(),
+      bottomNavigationBar: const CustomNavbar(), // ✅ ADDED: const
     );
   }
 
@@ -127,11 +133,10 @@ class StoriesScreen extends GetView<StoriesController> {
     );
   }
 
-
   // ========== SECTION TITLE ==========
   Widget _buildSectionTitle() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,23 +145,40 @@ class StoriesScreen extends GetView<StoriesController> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                AppStrings.discover,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.3,
-                ),
+              // Discover text with underline
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppStrings.discover,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                  SizedBox(height: 4.h),
+                  // Gold underline
+                  Container(
+                    width: 40.w,
+                    height: 2.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryGold,
+                      borderRadius: BorderRadius.circular(2.r),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 6),
+              SizedBox(height: 8.h),
+              // Category/Subtitle
               Obx(() => Text(
                 controller.selectedCategory.value == 'All'
                     ? AppStrings.quranStory
                     : controller.selectedCategory.value,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 26,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 0.2,
                 ),
@@ -168,10 +190,10 @@ class StoriesScreen extends GetView<StoriesController> {
           GestureDetector(
             onTap: controller.showCategoriesBottomSheet,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               decoration: BoxDecoration(
                 color: AppColors.primaryGold,
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(24.r),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.primaryGold.withOpacity(0.3),
@@ -185,14 +207,14 @@ class StoriesScreen extends GetView<StoriesController> {
                 children: [
                   Text(
                     AppStrings.categories,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.black,
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.2,
                     ),
                   ),
-                  const SizedBox(width: 6),
+                  SizedBox(width: 6.w),
                   const Icon(
                     Icons.keyboard_arrow_down_rounded,
                     color: Colors.black,
@@ -210,80 +232,100 @@ class StoriesScreen extends GetView<StoriesController> {
   // ========== STORY LIST ==========
   Widget _buildStoryList() {
     return Obx(() => Column(
-      children: controller.stories
-          .map((story) => _buildStoryCard(story))
-          .toList(),
+      children: controller.stories.map((story) => _buildStoryCard(story)).toList(),
     ));
   }
 
-  // ========== STORY CARD ==========
+  // ========== STORY CARD (ONLY THUMBNAIL + PLAY ICON) ==========
   Widget _buildStoryCard(StoryModel story) {
     return GestureDetector(
-      onTap: () => controller.openStory(story.id),
+      onTap: () => controller.openStory(story),
       child: Container(
-        margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           child: Stack(
             children: [
-              // Story Image Container
+              // Thumbnail Image Only (No loading, no video player)
               Container(
-                height: 460,
+                height: 300,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.grey[900],
-                  borderRadius: BorderRadius.circular(16),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(16.r),
                 ),
-                child: Stack(
-                  children: [
-                    // Image Placeholder with Gradient
-                    Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            const Color(0xFF1A3A52),
-                            const Color(0xFF0D1F2D),
-                          ],
-                        ),
+                child: CachedNetworkImage(
+                  imageUrl: story.thumbnailUrl,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [ // Top
+                          Color(0xFF3F3C38),
+                          Color(0xFF33302C),
+                          Color(0xFF272420),
+                          Color(0xFF1C1916),
+                          Color(0xFF11100E),
+                          Color(0xFF000000),
+                        ],
                       ),
                     ),
-
-                    // Dark Overlay from Bottom
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        height: 280,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withOpacity(0.5),
-                              Colors.black.withOpacity(0.85),
-                            ],
-                          ),
-                        ),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          const Color(0xFF1A3A52),
+                          const Color(0xFF0D1F2D),
+                        ],
                       ),
                     ),
-                  ],
+                    child: const Center(
+                      child: Icon(
+                        Icons.error_outline,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                  ),
                 ),
               ),
 
-              // Play Button (Center)
+              // Dark Overlay from Bottom
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: 220.h,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.5),
+                        Colors.black.withOpacity(0.85),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              // Static Play Icon (Center)
               Positioned(
                 top: 0,
                 left: 0,
                 right: 0,
-                bottom: 140,
+                bottom: 90.h,
                 child: Center(
                   child: Container(
-                    width: 72,
-                    height: 72,
+                    width: 72.w,
+                    height: 72.h,
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.7),
                       shape: BoxShape.circle,
@@ -292,7 +334,7 @@ class StoriesScreen extends GetView<StoriesController> {
                       child: Icon(
                         Icons.play_arrow_rounded,
                         color: AppColors.primaryGold,
-                        size: 40,
+                        size: 40.sp,
                       ),
                     ),
                   ),
@@ -301,19 +343,19 @@ class StoriesScreen extends GetView<StoriesController> {
 
               // Duration Badge (Top Right)
               Positioned(
-                top: 16,
-                right: 16,
+                top: 16.h,
+                right: 16.w,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.75),
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(6.r),
                   ),
                   child: Text(
-                    '08:45',
-                    style: const TextStyle(
+                    story.duration,
+                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.5,
                     ),
@@ -327,16 +369,16 @@ class StoriesScreen extends GetView<StoriesController> {
                 left: 0,
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.all(13.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Title
                       Text(
                         story.title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.2,
                           height: 1.3,
@@ -345,76 +387,69 @@ class StoriesScreen extends GetView<StoriesController> {
                         overflow: TextOverflow.ellipsis,
                       ),
 
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
 
-                      // Category and Views
-                      Row(
-                        children: [
-                          Text(
-                            'Faith Basics',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.7),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Container(
-                            width: 4,
-                            height: 4,
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.5),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            '45K views',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.7),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                      // Category
+                      Text(
+                        story.category,
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.7),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
 
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
 
                       // Watch Now Button
-                      Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryGold,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.primaryGold.withOpacity(0.3),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.play_arrow_rounded,
-                              color: Colors.black,
-                              size: 24,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              AppStrings.watchNow,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0.3,
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRoutes.videoPlayer, arguments: {
+                            'video': {
+                              'id': story.id,
+                              'title': story.title,
+                              'channelName': story.channelName,
+                              'channelLogo': story.channelLogo,
+                              'description': story.description,
+                              'videoUrl': story.videoUrl,
+                              'thumbnailUrl': story.thumbnailUrl,
+                            }
+                          });
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryGold,
+                            borderRadius: BorderRadius.circular(12.r),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.primaryGold.withOpacity(0.3),
+                                blurRadius: 12,
+                                offset: const Offset(0, 4),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.play_arrow_rounded,
+                                color: Colors.black,
+                                size: 24,
+                              ),
+                              SizedBox(width: 6.w),
+                              Text(
+                                AppStrings.watchNow,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.3,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

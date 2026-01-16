@@ -20,6 +20,8 @@ import '../../features/authentication/signup_screen/signup_screen.dart';
 import '../../features/home/home_binding.dart';
 import '../../features/quranScreen/quran_screen.dart';
 import '../../features/splash_screen/onboarding_binding/onboarding_binding.dart';
+import '../../features/stories_screen/playing_videos/playing_videos.dart';
+import '../../features/stories_screen/playing_videos/playing_videos_binding.dart';
 import '../../features/stories_screen/stories_binding.dart';
 import '../../features/stories_screen/stories_screen.dart';
 
@@ -42,6 +44,7 @@ class AppRoutes {
   static const String chat = '/chat';
   static const String shorts = '/shorts';
   static const String stories = '/stories';
+  static const String videoPlayer = '/video-player';
 
 
   // All Routes with Bindings
@@ -136,10 +139,15 @@ class AppRoutes {
     //--------------------------------- stories screen routes ------------------
     GetPage(
       name: AppRoutes.stories,
-      page: () => const StoriesScreen(),
+      page: () =>  StoriesScreen(),
       binding: StoriesBinding(),
     ),
 
+    GetPage(
+      name: AppRoutes.videoPlayer,
+      page: () => const PlayingVideos(),
+      binding: PlayingVideosBinding(),
+    ),
 
 
     // --------------------------------- quran screen routes ------------------
