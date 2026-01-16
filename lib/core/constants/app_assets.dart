@@ -10,8 +10,11 @@ class AppAssets {
   static const String  verifyIcon = 'assets/icons/verifyIcon.svg';
 
   // ============ SVG Icons ============
-  static const String sunrise = 'assets/svg/sunrise.svg';
-  static const String sunset = 'assets/svg/sunset.svg';
+  static const String sunrise = 'assets/icons/sunrise.svg';  // working this
+  static const String sunset = 'assets/icons/sunset.svg';
+
+
+
   static const String makkah = 'assets/svg/makkah.svg';
   static const String location = 'assets/svg/location.svg';
   static const String mosque = 'assets/svg/mosque.svg';

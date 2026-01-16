@@ -207,8 +207,345 @@ class AppStrings {
 
 
 
+  // ============================================================================
+  // APP GENERAL
+  // ============================================================================
+  static const String appTagline = 'Your spiritual companion';
+
+  // ============================================================================
+  // AUTHENTICATION
+  // ============================================================================
+
+  static const String logout = 'Logout';
+  static const String createAccount = 'Create Account';
+  static const String resetPassword = 'Reset Password';
+  static const String emailHint = 'Email';
+
+  // ============================================================================
+  // NAVIGATION
+  // ============================================================================
+  static const String navHome = 'Home';
+  static const String navAsk = 'Ask';
+  static const String navShorts = 'Shorts';
+  static const String navStories = 'Stories';
+  static const String navQuran = 'Qur\'an';
+
+  // ============================================================================
+  // MUSLIM AI SCREEN
+  // ============================================================================
+  static const String muslimAI = 'Muslim AI';
+  static const String freePlan = 'Free Plan';
+  static const String questionsLeft = 'left';
+  static const String askToMuslimAI = 'Ask to Muslim AI';
+
+  // Category titles
+  static const String categoryWisdom = 'Wisdom';
+  static const String categoryChallenges = 'Challenges in\nDaily Life';
+  static const String categorySpirituality = 'Spirituality Guidance';
+  static const String categoryCharacter = 'Character & Peace';
+  static const String categoryKnowledge = 'Knowledge and\nLearning';
+  static const String categoryRelationship = 'Relationship &\nCommunity';
+
+  // Category subtitles
+  static const String categoryWisdomSubtitle = 'Divine insights';
+  static const String categoryChallengesSubtitle = 'Amal/practice';
+  static const String categorySpiritualitySubtitle = 'Inner Peace';
+  static const String categoryCharacterSubtitle = 'Akhlaq & Adab';
+  static const String categoryKnowledgeSubtitle = 'Ilm & Education';
+  static const String categoryRelationshipSubtitle = 'Family & Society';
+
+  // ============================================================================
+  // COMMON ACTIONS
+  // ============================================================================
+  static const String submit = 'Submit';
+  static const String confirm = 'Confirm';
+  static const String save = 'Save';
+  static const String delete = 'Delete';
+  static const String edit = 'Edit';
+  static const String done = 'Done';
+  static const String back = 'Back';
+  static const String continue_ = 'Continue';
+  static const String yes = 'Yes';
+  static const String no = 'No';
+
+  // ============================================================================
+  // GREETINGS
+  // ============================================================================
+  static const String assalamuAlaikum = 'As-salamu alaykum';
+  static const String goodMorning = 'Good Morning';
+  static const String goodAfternoon = 'Good Afternoon';
+  static const String goodEvening = 'Good Evening';
+  static const String goodNight = 'Good Night';
+
+  // ============================================================================
+  // PRAYER TIMES
+  // ============================================================================
+  static const String fajr = 'Fajr';
+  static const String dhuhr = 'Dhuhr';
+  static const String asr = 'Asr';
+  static const String maghrib = 'Maghrib';
+  static const String isha = 'Isha';
+  static const String nextPrayer = 'Next Prayer';
+  static const String prayerTimes = 'Prayer Times';
+
+  // ============================================================================
+  // ERRORS & MESSAGES
+  // ============================================================================
+  static const String errorGeneral = 'Something went wrong';
+  static const String errorNetwork = 'No internet connection';
+  static const String errorInvalidEmail = 'Invalid email address';
+  static const String errorInvalidPassword = 'Password must be at least 6 characters';
+  static const String errorPasswordMismatch = 'Passwords do not match';
+  static const String errorEmptyField = 'This field cannot be empty';
+  static const String successSaved = 'Successfully saved';
+  static const String successDeleted = 'Successfully deleted';
+  static const String processing = 'Processing...';
+  static const String noDataFound = 'No data found';
+
+  // ============================================================================
+  // PLACEHOLDER TEXT
+  // ============================================================================
+  static const String searchPlaceholder = 'Search...';
+  static const String typeMessagePlaceholder = 'Type a message...';
+  static const String noResultsFound = 'No results found';
 
 
+
+
+  // ============================================================================
+  // CHAT SCREEN
+  // ============================================================================
+  static const String sendMessage = 'Send Message...';
+  static const String typeMessage = 'Type a message...';
+  static const String messageCopied = 'Message copied to clipboard';
+  static const String copied = 'Copied';
+  static const String regeneratingResponse = 'Regenerating response...';
+  static const String sendingMessage = 'Sending...';
+  static const String chatHistory = 'Chat History';
+  static const String newChat = 'New Chat';
+  static const String clearChat = 'Clear Chat';
+  static const String deleteChat = 'Delete Chat';
+
+  // Chat actions
+  static const String copyMessage = 'Copy';
+  static const String likeMessage = 'Like';
+  static const String dislikeMessage = 'Dislike';
+  static const String regenerateMessage = 'Regenerate';
+  static const String shareMessage = 'Share';
+  static const String reportMessage = 'Report';
+  static const String premiumPlan = 'Premium Plan';
+
+  // Daily Limit Dialog
+  static const String dailyLimitReached = 'Daily Limit Reached';
+  static const String dailyLimitMessage = "You've used your 10 free messages for today.\nUpgrade to Premium for unlimited access.";
+  static const String upgradeToPremium = 'Upgrade to Premium';
+
+  // ============================================================================
+  // COMMON ACTIONS
+  // ============================================================================
+  static const String close = 'Close';
+  static const String retry = 'Retry';
+  static const String refresh = 'Refresh';
+  static const String viewAll = 'View All';
+  static const String seeMore = 'See More';
+  static const String seeLess = 'See Less';
+
+  // ============================================================================
+  // GREETINGS
+  // ============================================================================
+
+  static const String welcome = 'Welcome';
+  static const String welcomeBack = 'Welcome Back';
+
+  // ============================================================================
+  // PRAYER TIMES
+  // ============================================================================
+  static const String timeRemaining = 'Time Remaining';
+  static const String prayerNotification = 'Prayer Notification';
+
+  // ============================================================================
+  // QURAN
+  // ============================================================================
+  static const String quran = 'Qur\'an';
+  static const String surah = 'Surah';
+  static const String juz = 'Juz';
+  static const String page = 'Page';
+  static const String verse = 'Verse';
+  static const String ayah = 'Ayah';
+  static const String translation = 'Translation';
+  static const String transliteration = 'Transliteration';
+  static const String tafsir = 'Tafsir';
+  static const String recitation = 'Recitation';
+  static const String bookmark = 'Bookmark';
+  static const String bookmarks = 'Bookmarks';
+  static const String lastRead = 'Last Read';
+  static const String continueReading = 'Continue Reading';
+
+  // ============================================================================
+  // ERRORS & MESSAGES
+  // ============================================================================
+  static const String errorRequired = 'This field is required';
+  static const String errorInvalidInput = 'Invalid input';
+
+  // Success messages
+  static const String successUpdated = 'Successfully updated';
+  static const String successSent = 'Successfully sent';
+  static const String successCopied = 'Successfully copied';
+
+  // Loading messages
+  static const String pleaseWait = 'Please wait...';
+  static const String fetching = 'Fetching data...';
+
+  // Empty states
+  static const String noChatHistory = 'No chat history';
+  static const String noBookmarks = 'No bookmarks yet';
+  static const String noNotifications = 'No notifications';
+  static const String emptyChat = 'Start a conversation';
+
+  // ============================================================================
+  // PLACEHOLDER TEXT
+  // ============================================================================
+  static const String enterEmail = 'Enter your email';
+  static const String enterPassword = 'Enter your password';
+  static const String enterName = 'Enter your name';
+  static const String writeHere = 'Write here...';
+
+  // ============================================================================
+  // SETTINGS
+  // ============================================================================
+  static const String settings = 'Settings';
+  static const String account = 'Account';
+  static const String profile = 'Profile';
+  static const String preferences = 'Preferences';
+  static const String notifications = 'Notifications';
+  static const String language = 'Language';
+  static const String theme = 'Theme';
+  static const String darkMode = 'Dark Mode';
+  static const String lightMode = 'Light Mode';
+  static const String fontSize = 'Font Size';
+  static const String aboutUs = 'About Us';
+  static const String privacyPolicy = 'Privacy Policy';
+  static const String contactUs = 'Contact Us';
+  static const String rateApp = 'Rate App';
+  static const String shareApp = 'Share App';
+  static const String version = 'Version';
+
+  // ============================================================================
+  // SUBSCRIPTION
+  // ============================================================================
+  static const String upgrade = 'Upgrade';
+  static const String upgradeToPro = 'Upgrade to Pro';
+  static const String premiumFeatures = 'Premium Features';
+  static const String unlimitedAccess = 'Unlimited Access';
+  static const String monthly = 'Monthly';
+  static const String yearly = 'Yearly';
+  static const String lifetime = 'Lifetime';
+  static const String subscribe = 'Subscribe';
+  static const String restorePurchase = 'Restore Purchase';
+  static const String manageSubscription = 'Manage Subscription';
+
+  // ============================================================================
+  // DAYS & MONTHS
+  // ============================================================================
+  static const String monday = 'Monday';
+  static const String tuesday = 'Tuesday';
+  static const String wednesday = 'Wednesday';
+  static const String thursday = 'Thursday';
+  static const String friday = 'Friday';
+  static const String saturday = 'Saturday';
+  static const String sunday = 'Sunday';
+
+  static const String january = 'January';
+  static const String february = 'February';
+  static const String march = 'March';
+  static const String april = 'April';
+  static const String may = 'May';
+  static const String june = 'June';
+  static const String july = 'July';
+  static const String august = 'August';
+  static const String september = 'September';
+  static const String october = 'October';
+  static const String november = 'November';
+  static const String december = 'December';
+
+  // ============================================================================
+  // TIME
+  // ============================================================================
+  static const String now = 'Now';
+  static const String today = 'Today';
+  static const String yesterday = 'Yesterday';
+  static const String tomorrow = 'Tomorrow';
+  static const String thisWeek = 'This Week';
+  static const String lastWeek = 'Last Week';
+  static const String thisMonth = 'This Month';
+  static const String lastMonth = 'Last Month';
+  static const String hour = 'hour';
+  static const String hours = 'hours';
+  static const String minute = 'minute';
+  static const String minutes = 'minutes';
+  static const String second = 'second';
+  static const String seconds = 'seconds';
+  static const String ago = 'ago';
+
+  // ============================================================================
+  // CONFIRMATION DIALOGS
+  // ============================================================================
+  static const String areYouSure = 'Are you sure?';
+  static const String deleteConfirmation = 'Are you sure you want to delete this?';
+  static const String logoutConfirmation = 'Are you sure you want to logout?';
+  static const String clearChatConfirmation = 'Are you sure you want to clear this chat?';
+  static const String cantBeUndone = 'This action cannot be undone';
+  static const String permanentAction = 'This is a permanent action';
+
+
+
+
+
+
+
+  /// videos
+
+  // ============================================================================
+  // SHORTS SCREEN
+  // ============================================================================
+  static const String forYou = 'For You';
+  static const String saved = 'Saved';
+  static const String removed = 'Removed';
+  static const String videoSaved = 'Video saved successfully';
+  static const String videoRemoved = 'Video removed from saved';
+  static const String upgradeSuccess = 'Success';
+  static const String upgradeMessage = 'Upgraded to Premium! Enjoy unlimited shorts.';
+
+
+
+
+
+  // Stories Screen
+  static const String searchQuranHadith = 'Search Qur\'an, Hadith...';
+  static const String discover = 'Discover';
+  static const String quranStory = 'Quran Story';
+  static const String categories = 'Categories';
+  static const String understandingSalah = 'Understanding Salah: Step by Step';
+  static const String newLabel = 'New';
+  static const String watchNow = 'Watch Now';
+
+  // ============================================================================
+  // LIMIT DIALOG
+  // ============================================================================
+  static const String limitReached = 'Limit Reached';
+  static const String freeUsersLimit = 'Free users can watch up to';
+  static const String shortsDaily = 'shorts daily.';
+  static const String upgradePremiumAccess = 'Upgrade to Premium for unlimited access.';
+
+  // ============================================================================
+  // ERROR MESSAGES
+  // ============================================================================
+  static const String videoLoadError = 'Failed to load video';
+
+  // ============================================================================
+  // COMMON
+  // ============================================================================
+  static const String unlimited = 'Unlimited';
 
 
 }

@@ -3,7 +3,7 @@ import 'dart:ui';
 class AppColors {
   // Primary Gold Color
   static const Color primaryGold = Color(0xFFCCA766);
-  static const Color primaryGoldLight = Color(0xFFD9B67A);
+  static const Color primaryGoldLight = Color(0xFFfee685);
   static const Color primaryGoldDark = Color(0xFFB8955C);
   static const Color buttonColor = Color(0xFFCCA766);
   static const Color black = Color(0xFF000000);
@@ -44,8 +44,14 @@ class AppColors {
   static const Color dividerSubtle = Color(0xFF333333);
 
 
+  //home screen color
+  static const Color homeBoxColor =  Color(0xFF232323);
+  static const Color homeBoxColor2 =  Color(0xFF242424);
+  static const Color homeBoxColor3 =  Color(0xFF504C44);
+
   // Divider Colors
   static const Color medGrey = Color(0xFF534F46);
+  static const Color borderColor = Color(0xFF878787);
   static const Color hintText = Color(0xFFBFBFBF);
 
 

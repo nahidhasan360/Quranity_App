@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final String? Function(String?)? validator;
   final int maxLines;
-  final bool enabled; // ✅
+  final bool enabled;
 
   const CustomTextField({
     super.key,

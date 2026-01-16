@@ -26,12 +26,30 @@ dependencies:
   # PIN Code Input
   pin_code_fields: ^8.0.1
 
+
+  # Location
+  geolocator:
+  geocoding:
+
+  # HTTP
+  http: ^1.1.0
+
+  # Date/Time
+  intl: ^0.20.2
+
+  share_plus: ^10.1.3
+
   # Icons
   cupertino_icons: ^1.0.8
 
   # Page Indicator
   smooth_page_indicator: ^1.2.0+3
   google_fonts: ^6.1.0
+
+
+#videos play
+  video_player: ^2.8.7
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:
