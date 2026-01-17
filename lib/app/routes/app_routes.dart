@@ -6,6 +6,12 @@ import 'package:quranity/features/home/home_screen.dart';
 import '../../features/MuslimAIScreen/Muslim_AI_Screen .dart';
 import '../../features/MuslimAIScreen/chat_Screen/chat_binding.dart';
 import '../../features/MuslimAIScreen/chat_Screen/chat_screen.dart';
+import '../../features/Quran/Quran_List_View.dart';
+import '../../features/Quran/hadith/hadith_list_binding.dart';
+import '../../features/Quran/hadith/hadith_list_view.dart';
+import '../../features/Quran/quran_list_binding.dart';
+import '../../features/Quran/surah_detail_view/surah_detail_binding.dart';
+import '../../features/Quran/surah_detail_view/surah_detail_view.dart';
 import '../../features/ShortsScreen/Shorts_Screen.dart';
 import '../../features/ShortsScreen/shorts_binding.dart';
 import '../../features/authentication/forgot_password_screen.dart/forgot_password_binding.dart';
@@ -19,6 +25,13 @@ import '../../features/authentication/signup_screen/signup_binding.dart';
 import '../../features/authentication/signup_screen/signup_screen.dart';
 import '../../features/home/home_binding.dart';
 import '../../features/quranScreen/quran_screen.dart';
+import '../../features/settings/Support/support_screen.dart';
+import '../../features/settings/account/account_binding.dart';
+import '../../features/settings/account/account_screen.dart';
+import '../../features/settings/account/change_password/change_password.dart';
+import '../../features/settings/account/edit_profile/edit_profile_screen.dart';
+import '../../features/settings/account/subscription_screen/subscription_screen.dart';
+import '../../features/settings/settings/settings.dart';
 import '../../features/splash_screen/onboarding_binding/onboarding_binding.dart';
 import '../../features/stories_screen/playing_videos/playing_videos.dart';
 import '../../features/stories_screen/playing_videos/playing_videos_binding.dart';
@@ -38,13 +51,32 @@ class AppRoutes {
   static const String login = '/login';
 
   // quran
-  static const String quranScreen = '/QuranScreen';
+  static const quranScreen = '/quran-list'; // ✅ Surah list
+  static const surahDetail = '/surah-detail'; // ✅ Surah detail
+
   // quran
   static const String muslimAI = '/MuslimAIScreen';
   static const String chat = '/chat';
   static const String shorts = '/shorts';
   static const String stories = '/stories';
-  static const String videoPlayer = '/video-player';
+  static const String videoPlayer = '/PlayingVideos';
+
+  // HADITH ROUTES
+  static const hadith = '/hadith';
+  static const hadithList = '/hadith-list'; // ✅
+  static const hadithCollection = '/hadith-collection';
+  static const hadithDetail = '/hadith-detail';
+
+  // =============================================================================
+  static const accountScreen = '/AccountScreen';
+  static const editProfileScreen = '/EditProfileScreen';
+  static const changePasswordScreen = '/ChangePasswordScreen';
+  static const subscriptionScreen = '/SubscriptionScreen';
+
+  // =========================== settings =================================
+  static const settingsScreen = '/SettingsScreen';
+  static const supportScreen = '/SupportScreen';
+
 
 
   // All Routes with Bindings
@@ -108,12 +140,6 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 300),
     ),
-    GetPage(
-      name: quranScreen,
-      page: () => QuranScreen(),
-      transition: Transition.rightToLeft,
-      transitionDuration: const Duration(milliseconds: 300),
-    ),
 
     //--------------------------------- Ai screen routes ------------------
     // Add to your routes
@@ -132,24 +158,101 @@ class AppRoutes {
       name: AppRoutes.shorts,
       page: () => const ShortsScreen(),
       binding: ShortsBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
     ),
-
-
 
     //--------------------------------- stories screen routes ------------------
     GetPage(
       name: AppRoutes.stories,
-      page: () =>  StoriesScreen(),
+      page: () => StoriesScreen(),
       binding: StoriesBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
     ),
 
     GetPage(
       name: AppRoutes.videoPlayer,
-      page: () => const PlayingVideos(),
+      page: () => const PlayingVideos(), // ✅ Add const
       binding: PlayingVideosBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    // --------------------------------- quran screen routes ------------------
+
+    // Quran List Route
+    GetPage(
+      name: AppRoutes.quranScreen, // ✅ Route name
+      page: () => const QuranListView(), // ✅ View widget
+      binding: QuranListBinding(), // ✅ Binding (IMPORTANT!)
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300), // ✅ Animation
+    ),
+
+    GetPage(
+      name: AppRoutes.hadith,
+      page: () => const HadithListView(),
+      binding: HadithListBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+
+    GetPage(
+      name: AppRoutes.surahDetail,
+      page: () => const SurahDetailView(),
+      binding: SurahDetailBinding(),
+      transition: Transition.rightToLeft,
+    ),
+
+    GetPage(
+      name: AppRoutes.accountScreen,
+      page: () => const AccountScreen(),
+      binding: AccountBinding(),
+      transition: Transition.rightToLeft,
+    ),
+
+    //==============================   account screen ar child ===================
+    GetPage(
+      name: editProfileScreen,
+      page: () => const EditProfileScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+    GetPage(
+      name: changePasswordScreen,
+      page: () => const ChangePasswordScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+    GetPage(
+      name: subscriptionScreen,
+      page: () => const SubscriptionScreen(),
+      transition: Transition.rightToLeft,
     ),
 
 
-    // --------------------------------- quran screen routes ------------------
+
+    GetPage(
+      name: settingsScreen,
+      page: () => const SettingsScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+
+    // ============================== support screen  ======================
+    GetPage(
+      name: supportScreen,
+      page: () => const SupportScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+    // =========================== menu section ===========================
+    // GetPage(name: '/account', page: () => AccountScreen()),
+    // GetPage(name: '/settings', page: () => SettingsScreen()),
+    // GetPage(name: '/support', page: () => SupportScreen()),
+    // GetPage(name: '/about', page: () => AboutQuranityScreen()),
+    // GetPage(name: '/legal', page: () => LegalScreen()),
+    //
   ];
 }

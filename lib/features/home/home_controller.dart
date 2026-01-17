@@ -6,7 +6,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'menu_drawer_Screen/Menu_Drawer_Screen.dart';
+import 'menu_drawer_Screen/menu_controller.dart';
+
 class HomeController extends GetxController {
+
   // Loading States
   final isLoading = true.obs;
   final hasError = false.obs;
@@ -309,9 +313,26 @@ class HomeController extends GetxController {
     meccaPeriod.value = meccaNow.hour >= 12 ? 'PM' : 'AM';
   }
 
+
+
+  // ⭐ Menu Drawer Open Function - Updated Version
+  void openMenuDrawer() {
+    // Controller initialize করুন navigate করার আগে
+    Get.put(MenuDrawerController());
+
+    Get.to(
+          () => const MenuDrawerScreen(),
+      transition: Transition.leftToRight,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
   Future<void> refreshPrayerTimes() async {
     await _initializePrayerTimes();
   }
+
+
+
 
   @override
   void onClose() {

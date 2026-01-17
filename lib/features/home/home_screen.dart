@@ -54,7 +54,7 @@ class HomeScreen extends GetView<HomeController> {
                       const PrayerTimesGrid(),
                       SizedBox(height: 20.h),
                       const MakruhAndNafalSection(),
-                      SizedBox(height: 120.h),
+                      SizedBox(height: 90.h),
                     ],
                   ),
                 ),
@@ -118,16 +118,22 @@ class HomeScreen extends GetView<HomeController> {
   Widget _buildTopBar() {
     return Row(
       children: [
-        Container(
-          width: 48.w,
-          height: 48.h,
-          decoration: BoxDecoration(
-            color: AppColors.medGrey,
-            borderRadius: BorderRadius.circular(50.r),
+        // ⭐ Menu Icon - GestureDetector দিয়ে wrap করুন
+        GestureDetector(
+          onTap: controller.openMenuDrawer, // এই line add করুন
+          child: Container(
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(
+              color: AppColors.medGrey,
+              borderRadius: BorderRadius.circular(50.r),
+            ),
+            child: const Icon(Icons.menu, color: Colors.white, size: 20),
           ),
-          child: const Icon(Icons.menu, color: Colors.white, size: 20),
         ),
         SizedBox(width: 12.w),
+
+        // বাকি সব same থাকবে...
         Expanded(
           child: Container(
             height: 50.h,
@@ -183,7 +189,6 @@ class HomeScreen extends GetView<HomeController> {
       ],
     );
   }
-
   Widget _buildPrayerTimesLabel() {
     return Center(
       child: Stack(

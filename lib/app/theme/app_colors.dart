@@ -68,4 +68,41 @@ class AppColors {
   static const Color unselectedGrey = Color(0xFF8E8E8E);
 
 
+
+
+
+
+
+  // Button Colors
+  static const Color buttonPrimary = Color(0xFFCCA766);
+  static const Color buttonBackground = Color(0xFF000000);
+
+
+  // Text Colors
+  static const Color textPrimary = Color(0xFFFFFFFF);
+  static const Color textSecondary = Color(0xFFCCA766);
+  static const Color textBlack = Color(0xFF000000);
+
+  // Background Colors
+  static const Color backgroundPrimary = Color(0xFF000000);
+  // Border Colors
+  static const Color borderGold = Color(0xFFCCA766);
+  static const Color borderDark = Color(0xFF3A3A3A);
+
+  // Icon Colors
+  static const Color iconGold = Color(0xFFCCA766);
+  static const Color iconWhite = Color(0xFFFFFFFF);
+
+  // Status Colors
+  static const Color successGreen = Color(0xFF4CAF50);
+  static const Color errorRed = Color(0xFFFF4444);
+  static const Color warningYellow = Color(0xFFFFB800);
+  static const Color infoBlue = Color(0xFF2196F3);
+
+  // Notification
+  static const Color notificationDot = Color(0xFFFF4444);
+
+  // Overlay Color
+
+
 }
