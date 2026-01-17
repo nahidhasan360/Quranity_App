@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quranity/features/settings/Support/support_strings.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../../app/routes/app_routes.dart';
+import 'contract_screen/contract_screen.dart';
+import 'feedback/feedback.dart';
+import 'help_faq_screen/help_faq_screen.dart';
 
 class SupportController extends GetxController {
-
   @override
   void onInit() {
     super.onInit();
@@ -15,19 +15,10 @@ class SupportController extends GetxController {
   /// HELP & FAQ
   /// ============================================================================
   void openHelpAndFaq() {
-    // TODO: Navigate to Help & FAQ screen
-    // Get.toNamed('/help-faq');
+    // Use direct navigation until route is registered
+    Get.to(() => const HelpFaqScreen());
 
-    Get.snackbar(
-      'Help & FAQ',
-      'Navigate to Help & FAQ screen',
-      backgroundColor: Colors.blue.withOpacity(0.9),
-      colorText: Colors.white,
-      snackPosition: SnackPosition.TOP,
-      margin: const EdgeInsets.all(16),
-      borderRadius: 12,
-      duration: const Duration(seconds: 2),
-    );
+    Get.toNamed(AppRoutes.helpFaq);
 
     print('📚 Navigate to Help & FAQ');
   }
@@ -35,73 +26,23 @@ class SupportController extends GetxController {
   /// ============================================================================
   /// CONTACT SUPPORT
   /// ============================================================================
-  void openContactSupport() async {
-    // Open email client
-    final Uri emailUri = Uri(
-      scheme: 'mailto',
-      path: SupportStrings.supportEmail,
-      queryParameters: {
-        'subject': SupportStrings.emailSubject,
-      },
-    );
+  void openContactSupport() {
+    // // Use direct navigation until route is registered
+    // Get.to(() => const ContactSupportScreen());
+    //
+    // // After adding route to app_pages.dart, use:
+    Get.toNamed(AppRoutes.contactSupport);
 
-    try {
-      if (await canLaunchUrl(emailUri)) {
-        await launchUrl(emailUri);
-        print('📧 Email client opened');
-      } else {
-        _showErrorSnackbar(
-          title: 'Error',
-          message: 'Could not open email client',
-        );
-      }
-    } catch (e) {
-      print('❌ Error opening email: $e');
-      _showErrorSnackbar(
-        title: 'Error',
-        message: 'Failed to open email client',
-      );
-    }
+    print('📧 Navigate to Contact Support');
   }
 
   /// ============================================================================
-  /// SHARE YOUR THOUGHTS
+  /// SHARE YOUR THOUGHTS (FEEDBACK)
   /// ============================================================================
   void openShareYourThoughts() {
-    // TODO: Navigate to Feedback screen
-    // Get.toNamed('/feedback');
+    // Show dialog directly (no route needed)
+    FeedbackDialog.show();
 
-    Get.snackbar(
-      'Share Your Thoughts',
-      'Navigate to Feedback screen',
-      backgroundColor: Colors.purple.withOpacity(0.9),
-      colorText: Colors.white,
-      snackPosition: SnackPosition.TOP,
-      margin: const EdgeInsets.all(16),
-      borderRadius: 12,
-      duration: const Duration(seconds: 2),
-    );
-
-    print('💭 Navigate to Share Your Thoughts');
-  }
-
-  /// ============================================================================
-  /// SNACKBAR HELPERS
-  /// ============================================================================
-  void _showErrorSnackbar({
-    required String title,
-    required String message,
-  }) {
-    Get.snackbar(
-      title,
-      message,
-      backgroundColor: Colors.red.withOpacity(0.9),
-      colorText: Colors.white,
-      icon: const Icon(Icons.error, color: Colors.white),
-      snackPosition: SnackPosition.TOP,
-      margin: const EdgeInsets.all(16),
-      borderRadius: 12,
-      duration: const Duration(seconds: 3),
-    );
+    print('💭 Show Feedback Dialog');
   }
 }

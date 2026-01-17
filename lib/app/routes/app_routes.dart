@@ -25,12 +25,19 @@ import '../../features/authentication/signup_screen/signup_binding.dart';
 import '../../features/authentication/signup_screen/signup_screen.dart';
 import '../../features/home/home_binding.dart';
 import '../../features/quranScreen/quran_screen.dart';
+import '../../features/settings/Support/contract_screen/contact_controller.dart';
+import '../../features/settings/Support/contract_screen/contract_screen.dart';
+import '../../features/settings/Support/feedback/feedback.dart';
+import '../../features/settings/Support/help_faq_screen/faq_controller.dart';
+import '../../features/settings/Support/help_faq_screen/help_faq_screen.dart';
 import '../../features/settings/Support/support_screen.dart';
+import '../../features/settings/about_quranity/about_quranity.dart';
 import '../../features/settings/account/account_binding.dart';
 import '../../features/settings/account/account_screen.dart';
 import '../../features/settings/account/change_password/change_password.dart';
 import '../../features/settings/account/edit_profile/edit_profile_screen.dart';
 import '../../features/settings/account/subscription_screen/subscription_screen.dart';
+import '../../features/settings/legal_screen/legal_screen.dart';
 import '../../features/settings/settings/settings.dart';
 import '../../features/splash_screen/onboarding_binding/onboarding_binding.dart';
 import '../../features/stories_screen/playing_videos/playing_videos.dart';
@@ -76,6 +83,22 @@ class AppRoutes {
   // =========================== settings =================================
   static const settingsScreen = '/SettingsScreen';
   static const supportScreen = '/SupportScreen';
+  static const feedbackDialog = '/FeedbackDialog';
+
+
+  // Support System Routes
+  static const String helpFaq = '/help-faq';
+  static const String contactSupport = '/contact-support';
+  static const String feedback = '/feedback';
+
+
+  //=======================  about quranity ========================
+
+
+  static const String aboutQuranityScreen = '/AboutQuranityScreen';
+
+  // ==========================   legal =========================
+  static const String legalScreen = '/LegalScreen';
 
 
 
@@ -246,6 +269,36 @@ class AppRoutes {
       page: () => const SupportScreen(),
       transition: Transition.rightToLeft,
     ),
+    GetPage(
+      name: AppRoutes.helpFaq,
+      page: () => const HelpFaqScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+    GetPage(
+      name: AppRoutes.contactSupport,
+      page: () => const ContactSupportScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+
+    //============================  about quranity ===================================
+
+    GetPage(
+      name: AppRoutes.aboutQuranityScreen,
+      page: () => const AboutQuranityScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+
+    //============================  legal quranity ===================================
+    GetPage(
+      name: AppRoutes.legalScreen,
+      page: () => const LegalScreen(),
+      transition: Transition.rightToLeft,
+    ),
+
+
 
     // =========================== menu section ===========================
     // GetPage(name: '/account', page: () => AccountScreen()),

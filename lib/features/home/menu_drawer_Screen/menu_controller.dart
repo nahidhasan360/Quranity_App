@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quranity/app/routes/app_routes.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../settings/RateAppDialog/RateAppDialog.dart';
 
 class MenuDrawerController extends GetxController {
   // Observable for user data
@@ -12,7 +12,6 @@ class MenuDrawerController extends GetxController {
   // Navigate to Account Screen
   void navigateToAccount() {
     Get.toNamed(AppRoutes.accountScreen);
-
     print('Navigate to Account');
   }
 
@@ -30,14 +29,13 @@ class MenuDrawerController extends GetxController {
 
   // Navigate to About Quranity Screen
   void navigateToAboutQuranity() {
-    // Get.toNamed(AppRoutes.supportScreen);
+    Get.toNamed(AppRoutes.aboutQuranityScreen);
     print('Navigate to About Quranity');
   }
 
   // Navigate to Legal Screen
   void navigateToLegal() {
-    Get.back(); // Close drawer
-    // Get.toNamed('/legal');
+    Get.toNamed(AppRoutes.legalScreen);
     print('Navigate to Legal');
   }
 
@@ -49,21 +47,11 @@ class MenuDrawerController extends GetxController {
     );
   }
 
-  // Rate Quranity App
-  void rateApp() async {
-    // Replace with your actual app store URLs
-    const androidUrl = 'https://play.google.com/store/apps/details?id=com.your.app';
-    const iosUrl = 'https://apps.apple.com/app/idYOUR_APP_ID';
-
-    try {
-      if (GetPlatform.isAndroid) {
-        await launchUrl(Uri.parse(androidUrl));
-      } else if (GetPlatform.isIOS) {
-        await launchUrl(Uri.parse(iosUrl));
-      }
-    } catch (e) {
-      print('Could not launch app store: $e');
-    }
+  // Rate Quranity App (Show Dialog First)
+  void rateApp() {
+    // Show rating dialog
+    RateAppDialog.show();
+    print('Show rating dialog');
   }
 
   // Logout

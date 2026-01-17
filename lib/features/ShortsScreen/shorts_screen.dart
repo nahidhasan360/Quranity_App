@@ -125,7 +125,7 @@ class _ShortsScreenState extends State<ShortsScreen> with WidgetsBindingObserver
 
   Widget _buildBottomProgressBar(ShortsController controller) {
     return Positioned(
-      bottom: 77.h,
+      bottom: 86.h,
       left: 0,
       right: 0,
       child: Obx(() {

@@ -241,7 +241,7 @@ class DailyVerseCard extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
@@ -254,7 +254,7 @@ class DailyVerseCard extends GetView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w,),
             decoration: BoxDecoration(
               color: AppColors.primaryGold.withValues(alpha: 0.1),
               border: Border.all(
@@ -348,7 +348,7 @@ class NextPrayerCard extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 10.h),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topRight,
@@ -629,7 +629,7 @@ class MakruhAndNafalSection extends GetView<HomeController> {
 
   Widget _buildMakruhCard() {
     return Container(
-      padding: EdgeInsets.only(left: 10,right: 10, top: 16, bottom: 10, ),
+      padding: EdgeInsets.only(left: 9,right: 9, top: 16, bottom: 10, ),
       decoration: BoxDecoration(
         color: AppColors.homeBoxColor,
         borderRadius: BorderRadius.circular(16.r),

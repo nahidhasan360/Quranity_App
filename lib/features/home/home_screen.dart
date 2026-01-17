@@ -37,7 +37,7 @@ class HomeScreen extends GetView<HomeController> {
                   parent: BouncingScrollPhysics(),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 13.h), // Global 10.w padding
+                  padding: EdgeInsets.symmetric(horizontal: 10.w), // Global 10.w padding
                   child: Column(
                     children: [
                       SizedBox(height: 20.h),
@@ -45,14 +45,15 @@ class HomeScreen extends GetView<HomeController> {
                       SizedBox(height: 20.h),
                       const TimeCardsWidget(),
                       SizedBox(height: 20.h),
-                      const DailyVerseCard(),
-                      SizedBox(height: 20.h),
                       _buildPrayerTimesLabel(),
                       SizedBox(height: 20.h),
                       const NextPrayerCard(),
                       SizedBox(height: 20.h),
                       const PrayerTimesGrid(),
                       SizedBox(height: 20.h),
+                      const DailyVerseCard(),
+                      SizedBox(height: 20.h),
+
                       const MakruhAndNafalSection(),
                       SizedBox(height: 90.h),
                     ],
@@ -203,7 +204,7 @@ class HomeScreen extends GetView<HomeController> {
                   color: const Color(0xFF3A3A3A),
                 ),
               ),
-              SizedBox(width: 16.w), // Gap for label
+              SizedBox(width: 16.w),
               Expanded(
                 child: Container(
                   height: 1.h,
@@ -214,7 +215,7 @@ class HomeScreen extends GetView<HomeController> {
           ),
           // Label with white background and shadow
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 2.h),
+            padding: EdgeInsets.symmetric(horizontal: 18.w, ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(24.r),
