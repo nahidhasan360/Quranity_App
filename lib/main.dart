@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           defaultTransition: Transition.cupertino,
           transitionDuration: const Duration(milliseconds: 300),
 
-          initialRoute: AppRoutes.home,
+          initialRoute: AppRoutes.splash,
           navigatorKey: Get.key,
           getPages: AppRoutes.pages,
         );

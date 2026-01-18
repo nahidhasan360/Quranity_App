@@ -79,7 +79,6 @@ class LoginController extends GetxController {
     isLoading.value = true;
 
     try {
-      // ✅ TODO: Implement your login API call here
       // Example:
       // final response = await AuthService.login(
       //   email: emailController.text.trim(),
@@ -93,7 +92,7 @@ class LoginController extends GetxController {
       Get.snackbar(
         'Success',
         AppStrings.loginSuccess,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green,
         colorText: Colors.white,
         duration: const Duration(seconds: 2),

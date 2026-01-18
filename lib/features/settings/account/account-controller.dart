@@ -108,8 +108,7 @@ class AccountController extends GetxController {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.back(); // Close dialog
-
+                        Get.toNamed(AppRoutes.registrationScreen);
                         // TODO: Implement actual delete logic
                         // await accountApi.deleteAccount();
 
