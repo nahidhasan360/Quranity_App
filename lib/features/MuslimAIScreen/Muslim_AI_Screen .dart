@@ -1,12 +1,14 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:quranity/app/routes/app_routes.dart';
 import 'package:quranity/app/theme/app_colors.dart';
 import 'package:quranity/widgets/custom_navigation_bar.dart';
-
-import 'package:get/get.dart';
 import '../../core/constants/ app_strings.dart';
 import '../../widgets/reusable_gradient.dart';
+import 'info_dialog.dart';
 
 class MuslimAIScreen extends StatelessWidget {
   const MuslimAIScreen({super.key});
@@ -19,7 +21,7 @@ class MuslimAIScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              _buildHeader(),
+              _buildHeader(context),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -42,21 +44,42 @@ class MuslimAIScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            AppStrings.muslimAI,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'SF Pro',
-            ),
+        children:  [
+          // Left side: Muslim AI title with info icon
+          Row(
+            children: [
+              const Text(
+                AppStrings.muslimAI,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  fontFamily:  'SF Pro',
+                ),
+              ),
+              const SizedBox(width: 5),
+              GestureDetector(
+                onTap: () {
+                  muslimAiDialog(context);
+                },
+                child:  Container(
+                  padding: const EdgeInsets.all(4),
+                  child: Icon(
+                    Icons.info_outline,
+                    color: Colors.grey,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
           ),
+
+          // Right side: Plan badge
           _buildPlanBadge(),
         ],
       ),
@@ -76,8 +99,8 @@ class MuslimAIScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            AppStrings.freePlan,
-            style: TextStyle(
+            AppStrings. freePlan,
+            style:  TextStyle(
               color: Colors.white,
               fontSize: 11,
               fontWeight: FontWeight.w500,
@@ -86,7 +109,7 @@ class MuslimAIScreen extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             '$questionsLeft ${AppStrings.questionsLeft}',
-            style: const TextStyle(
+            style:  const TextStyle(
               color: Color(0xFFFFB800),
               fontSize: 11,
               fontWeight: FontWeight.w600,
@@ -104,9 +127,9 @@ class MuslimAIScreen extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount:  2,
         crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        mainAxisSpacing:  10,
         childAspectRatio: 1.1,
       ),
       itemCount: categories.length,
@@ -136,7 +159,7 @@ class MuslimAIScreen extends StatelessWidget {
         fallbackIcon: Icons.calendar_today_outlined,
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          end: Alignment. bottomRight,
           colors: [Color(0xFF4A5F7A), Color(0xFF2F3E51)],
         ),
       ),
@@ -146,7 +169,7 @@ class MuslimAIScreen extends StatelessWidget {
         svgIcon: 'assets/icons/spirituality.svg',
         fallbackIcon: Icons.favorite_outline,
         gradient: const LinearGradient(
-          begin: Alignment.topLeft,
+          begin:  Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [Color(0xFF6B4963), Color(0xFF4A2F43)],
         ),
@@ -155,7 +178,7 @@ class MuslimAIScreen extends StatelessWidget {
         title: AppStrings.categoryCharacter,
         subtitle: AppStrings.categoryCharacterSubtitle,
         svgIcon: 'assets/icons/character.svg',
-        fallbackIcon: Icons.self_improvement_outlined,
+        fallbackIcon: Icons. self_improvement_outlined,
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -179,7 +202,7 @@ class MuslimAIScreen extends StatelessWidget {
         svgIcon: 'assets/icons/relationship.svg',
         fallbackIcon: Icons.people_outline,
         gradient: const LinearGradient(
-          begin: Alignment.topLeft,
+          begin:  Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [Color(0xFF4A4A4A), Color(0xFF2F2F2F)],
         ),
@@ -204,7 +227,7 @@ class MuslimAIScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppColors.medGrey.withOpacity(0.9),
+            color:  AppColors.medGrey. withOpacity(0.9),
             blurRadius: 30,
             spreadRadius: 1,
             offset: const Offset(0, 2),
@@ -213,7 +236,7 @@ class MuslimAIScreen extends StatelessWidget {
             color: Colors.black.withOpacity(0.4),
             blurRadius: 30,
             spreadRadius: -20,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -229,7 +252,7 @@ class MuslimAIScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.auto_awesome, size: 20, color: Colors.black),
+                const Icon(Icons.auto_awesome, size: 20, color: Colors.black),
                 const SizedBox(width: 10),
                 // Text
                 const Text(
@@ -237,7 +260,7 @@ class MuslimAIScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black,
+                    color: Colors. black,
                     fontFamily: 'SF Pro',
                   ),
                 ),
@@ -276,9 +299,9 @@ class _CategoryCardState extends State<CategoryCard> {
         decoration: BoxDecoration(
           gradient: widget.category.gradient,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [
+          boxShadow:  [
             BoxShadow(
-              color: Colors.black.withOpacity(0.25),
+              color: Colors.black. withOpacity(0.25),
               blurRadius: 6,
               offset: const Offset(0, 3),
             ),
@@ -304,7 +327,7 @@ class _CategoryCardState extends State<CategoryCard> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height:  2),
             Text(
               widget.category.subtitle,
               style: const TextStyle(
@@ -326,15 +349,15 @@ class _CategoryCardState extends State<CategoryCard> {
     return FutureBuilder<bool>(
       future: _checkAssetExists(widget.category.svgIcon),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+        if (snapshot. connectionState == ConnectionState.waiting) {
           return Container(
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white. withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Center(
+            child:  const Center(
               child: SizedBox(
                 width: 18,
                 height: 18,
@@ -357,19 +380,19 @@ class _CategoryCardState extends State<CategoryCard> {
           child: Center(
             child: snapshot.hasData && snapshot.data == true
                 ? SvgPicture.asset(
-                    widget.category.svgIcon,
-                    width: 22,
-                    height: 22,
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
-                      BlendMode.srcIn,
-                    ),
-                  )
+              widget.category.svgIcon,
+              width: 22,
+              height: 22,
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+            )
                 : Icon(
-                    widget.category.fallbackIcon,
-                    size: 22,
-                    color: Colors.white,
-                  ),
+              widget.category.fallbackIcon,
+              size: 22,
+              color: Colors.white,
+            ),
           ),
         );
       },

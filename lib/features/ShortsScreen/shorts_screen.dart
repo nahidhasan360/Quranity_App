@@ -6,6 +6,7 @@ import 'package:quranity/app/theme/app_colors.dart';
 import 'package:quranity/widgets/custom_navigation_bar.dart';
 import 'package:video_player/video_player.dart';
 import '../../core/constants/ app_strings.dart';
+import 'info_dialog_for_shorts.dart';
 import 'shorts_controller.dart';
 
 class ShortsScreen extends StatefulWidget {
@@ -354,18 +355,39 @@ class _ShortsScreenState extends State<ShortsScreen> with WidgetsBindingObserver
           ],
         ),
         SizedBox(height: 12.h),
-        Text(
-          video.description,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w400,
-            height: 1.4,
-            letterSpacing: 0.2,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
+        Row(
+          children: [
+            Text(
+              video.description,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                height: 1.4,
+                letterSpacing: 0.2,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(width: 5.h,),
+            GestureDetector(
+              onTap: () {
+                muslimAiDialogForShorts(context);
+              },
+              child:  Container(
+                padding: const EdgeInsets.all(4),
+                child: Icon(
+                  Icons.info_outline,
+                  color: Colors.grey,
+                  size: 20,
+                ),
+              ),
+            ),
+
+
+          ],
         ),
+
       ],
     );
   }

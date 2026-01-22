@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:quranity/app/theme/app_colors.dart';
+import 'info_dialog_for_stories.dart';
 import 'playing_videos_controller.dart';
 
 class PlayingVideos extends GetView<PlayingVideosController> {
@@ -23,7 +24,7 @@ class PlayingVideos extends GetView<PlayingVideosController> {
               height: playerHeight,
               width: double.infinity,
               color: Colors.black,
-              child: !controller.hasVideoStarted.value
+              child: ! controller.hasVideoStarted. value
                   ? _buildThumbnailWithPlayButton(playerHeight, context)
                   : _buildVideoPlayerWidget(playerHeight, context),
             );
@@ -39,7 +40,7 @@ class PlayingVideos extends GetView<PlayingVideosController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16),
-                    _buildVideoInfo(),
+                    _buildVideoInfo(context), // ← context পাস করুন
                     const SizedBox(height: 16),
                     _buildDescription(),
                     const SizedBox(height: 24),
@@ -63,7 +64,7 @@ class PlayingVideos extends GetView<PlayingVideosController> {
         alignment: Alignment.center,
         children: [
           CachedNetworkImage(
-            imageUrl: controller.currentVideo.value.thumbnailUrl,
+            imageUrl: controller.currentVideo. value.thumbnailUrl,
             fit: BoxFit.cover,
             width: double.infinity,
             height: height,
@@ -78,7 +79,7 @@ class PlayingVideos extends GetView<PlayingVideosController> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: const BoxDecoration(
-              color: AppColors.primaryGold,
+              color:  AppColors.primaryGold,
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -87,7 +88,6 @@ class PlayingVideos extends GetView<PlayingVideosController> {
               size: 40,
             ),
           ),
-          // থাম্বনেইল অবস্থায় লোডিং হলে
           if (controller.isVideoLoading.value)
             const CircularProgressIndicator(color: AppColors.primaryGold),
         ],
@@ -95,34 +95,31 @@ class PlayingVideos extends GetView<PlayingVideosController> {
     );
   }
 
-
   Widget _buildVideoPlayerWidget(double height, BuildContext context) {
     return Obx(() => GestureDetector(
       onTap: controller.toggleControls,
       child: Stack(
         alignment: Alignment.center,
         children: [
-
           if (controller.isInitialized.value)
             Center(
               child: AspectRatio(
-                aspectRatio: controller.videoController!.value.aspectRatio,
+                aspectRatio: controller.videoController! .value.aspectRatio,
                 child: VideoPlayer(controller.videoController!),
               ),
             ),
 
-          if (controller.isBuffering.value || !controller.isInitialized.value)
+          if (controller.isBuffering.value || ! controller.isInitialized.value)
             const Center(
-              child: CircularProgressIndicator(color: AppColors.primaryGold),
+              child: CircularProgressIndicator(color: AppColors. primaryGold),
             ),
 
           if (controller.showControls.value)
-            Positioned.fill(
+            Positioned. fill(
               child: Container(
                 color: Colors.black45,
                 child: Stack(
                   children: [
-
                     Positioned(
                       top: MediaQuery.of(context).padding.top + 5,
                       left: 16,
@@ -132,15 +129,16 @@ class PlayingVideos extends GetView<PlayingVideosController> {
                     Center(
                       child: GestureDetector(
                         onTap: controller.playPause,
-                        child: Container(
+                        child:  Container(
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
                               color: Colors.black26,
-                              shape: BoxShape.circle
-                          ),
+                              shape: BoxShape.circle),
                           child: Icon(
-                            controller.isPlaying.value ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                            color: Colors.white,
+                            controller.isPlaying.value
+                                ? Icons.pause_rounded
+                                : Icons.play_arrow_rounded,
+                            color:  Colors.white,
                             size: 55,
                           ),
                         ),
@@ -169,8 +167,8 @@ class PlayingVideos extends GetView<PlayingVideosController> {
         width: 36,
         height: 36,
         decoration: const BoxDecoration(
-          color: Colors.black54,
-          shape: BoxShape.circle,
+          color:  Colors.black54,
+          shape: BoxShape. circle,
         ),
         child: const Icon(
           Icons.arrow_back_ios_new,
@@ -187,17 +185,16 @@ class PlayingVideos extends GetView<PlayingVideosController> {
       child: Column(
         children: [
           SliderTheme(
-
             data: SliderThemeData(
-              padding: EdgeInsets.only(left: 0,right: 0,bottom: 5,),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 5),
               trackHeight: 3,
               thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
               activeTrackColor: AppColors.primaryGold,
               inactiveTrackColor: Colors.white30,
-              thumbColor: Colors.white,
+              thumbColor: Colors. white,
             ),
-            child: Slider(
-              value: controller.currentPosition.value.clamp(
+            child:  Slider(
+              value: controller. currentPosition.value. clamp(
                 0.0,
                 controller.duration.value,
               ),
@@ -209,9 +206,8 @@ class PlayingVideos extends GetView<PlayingVideosController> {
           ),
           Row(
             children: [
-
               _controlIcon(
-                controller.isPlaying.value ? Icons.pause : Icons.play_arrow,
+                controller.isPlaying.value ? Icons.pause :  Icons.play_arrow,
                 controller.playPause,
               ),
               const SizedBox(width: 15),
@@ -244,7 +240,7 @@ class PlayingVideos extends GetView<PlayingVideosController> {
       child: Text(
         '${controller.formatDuration(controller.currentPosition.value)} / ${controller.formatDuration(controller.duration.value)}',
         style: const TextStyle(
-          color: Colors.white,
+          color: Colors. white,
           fontSize: 10,
           fontWeight: FontWeight.bold,
         ),
@@ -259,47 +255,70 @@ class PlayingVideos extends GetView<PlayingVideosController> {
     );
   }
 
-  // --- Video Info, Description, Continue Watching (Unchanged) ---
-  Widget _buildVideoInfo() {
+  // ========== ভিডিও ইনফো ==========
+  Widget _buildVideoInfo(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment. start,
         children: [
-          Text(
-            controller.currentVideo.value.title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            children: [
+              Text(
+                controller.currentVideo.value.title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(width: 5),
+              GestureDetector(
+                onTap: () {
+                  muslimAiDialogForStories(context);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  child: const Icon(
+                    Icons.info_outline,
+                    color:  Colors.grey,
+                    size: 20,
+                  ),
+                ),
+              ),
+
+            ],
           ),
-          const SizedBox(height: 12),
+
+          const SizedBox(height:  12),
+
           Row(
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: CachedNetworkImage(
-                  imageUrl: controller.currentVideo.value.channelLogo,
+                  imageUrl: controller.currentVideo.value. channelLogo,
                   width: 32,
                   height: 32,
-                  errorWidget: (c, u, e) =>
-                      Icon(Icons.account_circle, color: AppColors.primaryGold),
+                  errorWidget: (c, u, e) => Icon(
+                    Icons.account_circle,
+                    color:  AppColors.primaryGold,
+                  ),
                 ),
               ),
               const SizedBox(width: 10),
               Text(
-                controller.currentVideo.value.channelName,
+                controller.currentVideo. value.channelName,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight. w500,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          const Divider(color: Colors.white12, thickness: 1),
+          const Divider(color: Colors. white12, thickness: 1),
         ],
       ),
     );
@@ -336,7 +355,7 @@ class PlayingVideos extends GetView<PlayingVideosController> {
           child: Text(
             "Continue Watching",
             style: TextStyle(
-              color: Colors.white,
+              color: Colors. white,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -344,50 +363,50 @@ class PlayingVideos extends GetView<PlayingVideosController> {
         ),
         const SizedBox(height: 12),
         Obx(
-          () => ListView.builder(
+              () => ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.continueWatching.length,
             itemBuilder: (context, index) {
               final video = controller.continueWatching[index];
               return GestureDetector(
-                onTap: () => controller.changeVideo(video),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 6,
-                  ),
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1C1C1E),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: CachedNetworkImage(
-                          imageUrl: video.thumbnailUrl,
-                          width: 110,
-                          height: 65,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          video.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
+                  onTap:  () => controller.changeVideo(video),
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical:  6,
+                    ),
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1C1C1E),
+                      borderRadius: BorderRadius. circular(12),
+                    ),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: CachedNetworkImage(
+                            imageUrl: video.thumbnailUrl,
+                            width: 110,
+                            height: 65,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            video.title,
+                            maxLines: 2,
+                            overflow: TextOverflow. ellipsis,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
               );
             },
           ),

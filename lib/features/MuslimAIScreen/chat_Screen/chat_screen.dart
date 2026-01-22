@@ -5,6 +5,7 @@ import 'package:quranity/app/theme/app_colors.dart';
 import '../../../core/constants/ app_strings.dart';
 import '../../../widgets/reusable_gradient.dart';
 import 'chat_controller.dart';
+import 'info_dialog_for_chat.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -18,7 +19,7 @@ class ChatScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              _buildAppBar(controller),
+              _buildAppBar(context, controller), // ← context pass করুন
               Expanded(
                 child: _buildChatList(controller),
               ),
@@ -34,68 +35,85 @@ class ChatScreen extends StatelessWidget {
 // APP BAR
 // ============================================================================
 
-  Widget _buildAppBar(ChatController controller) {
+  Widget _buildAppBar(BuildContext context, ChatController controller) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      padding: EdgeInsets. symmetric(horizontal: 16.w, vertical: 12.h),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment. spaceBetween,
         children: [
-          // Back button
-          InkWell(
-            onTap: () => Get.back(),
-            borderRadius: BorderRadius.circular(8.r),
-            child: Container(
-              padding: EdgeInsets.all(8.r),
-              child: Icon(
-                Icons.arrow_back_ios_new,
-                color: Colors.white,
-                size: 20.sp,
+          // Left side:  Back button + Info icon
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Back button
+              InkWell(
+                onTap: () => Get.back(),
+                borderRadius: BorderRadius.circular(8.r),
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors. white,
+                  size: 24.sp,
+                ),
+              ),
+              SizedBox(width: 3.w),
+              // Info icon
+              GestureDetector(
+                onTap: () {
+                  muslimAiDialogForChats(context);
+                },
+                child:  Icon(
+                  Icons. info_outline,
+                  color:  Colors.grey,
+                  size: 20.sp,
+                ),
+              ),
+            ],
+          ),
+
+          // Center: Title
+          Expanded(
+            child:  Center(
+              child: Text(
+                AppStrings.muslimAI,
+                textAlign:  TextAlign.center,
+                style: TextStyle(
+                  color:  Colors.white,
+                  fontSize: 20,
+                  fontWeight:  FontWeight.w600,
+                  fontFamily: 'SF Pro',
+                ),
               ),
             ),
           ),
-          SizedBox(width: 12.w),
-          // Title
-          const Expanded(
-            child: Text(
-              AppStrings.muslimAI,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'SF Pro',
-              ),
-            ),
-          ),
-          // Plan badge
+
+          // Right side: Plan badge (Column layout)
           Obx(() {
-            // Check if messages left is 0 for free users
-            final isZeroLeft = !controller.isPremiumUser.value &&
+            final isZeroLeft = ! controller.isPremiumUser.value &&
                 controller.messagesLeft.value == 0;
 
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+              // padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
               decoration: BoxDecoration(
-                color: const Color(0xFF3A3A3A),
-                borderRadius: BorderRadius.circular(12.r),
+                // color: const Color(0xFF3A3A3A),
+                // borderRadius:  BorderRadius.circular(20.r),
               ),
-              child: Row(
+              child:  Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     controller.planText,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 11.sp,
+                      fontSize: 10.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(width: 4.w),
                   Text(
                     controller.planBadgeText,
                     style: TextStyle(
-                      // Red color when 0 left, otherwise gold/yellow
                       color: isZeroLeft
                           ? Colors.red
-                          : controller.isPremiumUser.value
+                          :  controller.isPremiumUser.value
                           ? AppColors.primaryGoldLight
                           : const Color(0xFFFFB800),
                       fontSize: 11.sp,
@@ -139,8 +157,8 @@ class ChatScreen extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (!message.isUser) _buildAIAvatar(),
-          if (!message.isUser) SizedBox(width: 8.w),
+          if (! message.isUser) _buildAIAvatar(),
+          if (! message.isUser) SizedBox(width: 8.w),
           if (message.isUser)
             Flexible(
               child: Row(
@@ -168,7 +186,7 @@ class ChatScreen extends StatelessWidget {
 
   Widget _buildUserMessage(ChatMessage message) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+      padding: EdgeInsets. symmetric(horizontal: 12.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: AppColors.primaryGold,
         borderRadius: BorderRadius.only(
@@ -186,7 +204,7 @@ class ChatScreen extends StatelessWidget {
             child: Text(
               message.text,
               style: TextStyle(
-                color: AppColors.black,
+                color:  AppColors.black,
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'SF Pro',
@@ -196,10 +214,10 @@ class ChatScreen extends StatelessWidget {
           ),
           SizedBox(width: 6.w),
           Icon(
-            !message.isSent
+            ! message.isSent
                 ? Icons.access_time
                 : message.isDelivered
-                ? Icons.done_all
+                ?  Icons.done_all
                 : Icons.done,
             size: 14.sp,
             color: AppColors.black,
@@ -221,7 +239,7 @@ class ChatScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
           decoration: BoxDecoration(
             color: const Color(0xFF2A2A2A),
-            borderRadius: BorderRadius.only(
+            borderRadius:  BorderRadius.only(
               topLeft: Radius.circular(16.r),
               topRight: Radius.circular(16.r),
               bottomLeft: Radius.circular(4.r),
@@ -251,7 +269,7 @@ class ChatScreen extends StatelessWidget {
 
   Widget _buildMessageActions(ChatMessage message, ChatController controller) {
     return InkWell(
-      onTap: () => controller.copyMessage(message.text),
+      onTap: () => controller.copyMessage(message. text),
       borderRadius: BorderRadius.circular(8.r),
       child: Container(
         padding: EdgeInsets.all(6.r),
@@ -273,20 +291,20 @@ class ChatScreen extends StatelessWidget {
       width: 32.w,
       height: 32.w,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color:  Colors.white,
         shape: BoxShape.circle,
       ),
       child: ClipOval(
-        child: Image.network(
+        child: Image. network(
           'https://i.ibb.co/YQs3L6j/muslim-ai-avatar.png',
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
             return Container(
-              color: const Color(0xFF2A2A2A),
+              color:  const Color(0xFF2A2A2A),
               child: Icon(
-                Icons.mosque,
-                color: AppColors.primaryGold,
-                size: 20.sp,
+                Icons. mosque,
+                color: AppColors. primaryGold,
+                size:  20.sp,
               ),
             );
           },
@@ -322,7 +340,7 @@ class ChatScreen extends StatelessWidget {
       width: 32.w,
       height: 32.w,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: Colors. white,
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -339,7 +357,7 @@ class ChatScreen extends StatelessWidget {
 
   Widget _buildMessageInput(ChatController controller) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      padding:  EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       child: Row(
         children: [
           Expanded(
@@ -355,7 +373,7 @@ class ChatScreen extends StatelessWidget {
                 controller: controller.messageController,
                 focusNode: controller.messageFocusNode,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors. white,
                   fontSize: 14.sp,
                   fontFamily: 'SF Pro',
                 ),
@@ -363,10 +381,10 @@ class ChatScreen extends StatelessWidget {
                   hintText: AppStrings.sendMessage,
                   hintStyle: TextStyle(
                     color: const Color(0xFF6B6B6B),
-                    fontSize: 14.sp,
+                    fontSize:  14.sp,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
+                  contentPadding: EdgeInsets. symmetric(
                     horizontal: 16.w,
                     vertical: 10.h,
                   ),
@@ -379,16 +397,16 @@ class ChatScreen extends StatelessWidget {
           SizedBox(width: 12.w),
           Obx(() {
             return InkWell(
-              onTap: controller.isSending.value ? null : controller.sendMessage,
+              onTap: controller. isSending.value ? null :  controller.sendMessage,
               borderRadius: BorderRadius.circular(24.r),
               child: Container(
                 width: 44.w,
                 height: 44.w,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient:  LinearGradient(
                     begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: controller.isSending.value
+                    end: Alignment. bottomRight,
+                    colors:  controller.isSending.value
                         ? [
                       const Color(0xFF6B6B6B),
                       const Color(0xFF6B6B6B),
@@ -398,7 +416,7 @@ class ChatScreen extends StatelessWidget {
                       AppColors.primaryGoldLight,
                     ],
                   ),
-                  shape: BoxShape.circle,
+                  shape:  BoxShape.circle,
                 ),
                 child: Icon(
                   Icons.send,
