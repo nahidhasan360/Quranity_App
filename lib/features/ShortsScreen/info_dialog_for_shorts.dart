@@ -51,7 +51,7 @@ void muslimAiDialogForShorts(BuildContext context) {
               Flexible(
                 child: SingleChildScrollView(
                   child: Text(
-                    'To use this option, your permit must be imported from your device storage or online storage such as iCloud, Google Drive or DropBox. The permit cannot be imported directly from your email attachment.\n\nYou can import multiple permits one at a time. Each permit must be processed and directions appear in the editing text field before importing the next.',
+                    'By using this feature, you acknowledge that the content provided is for educational and reflective purposes only. It is not intended as religious rulings or fatwas. For specific religious guidance, please consult a qualified scholar. Additionally, the creation, generation, or copying of videos is prohibited. This feature is intended solely for educational purposes, and we remind you to use it mindfully, avoiding excessive use and focusing on its intended educational value',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,

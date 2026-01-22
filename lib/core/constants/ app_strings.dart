@@ -40,6 +40,31 @@ class AppStrings {
   static const String signUp = 'Sign Up';
   static const String signIn = 'Sign In';
 
+
+
+  // Success Dialog
+  static const String importantDisclaimer = 'Important Disclaimer';
+  static const String iUnderStand = 'I Understand';
+
+  // Disclaimer Text
+  static const String disclaimerText =
+      'The content provided here is strictly for informational and reflective purposes only. '
+      'It is not, under any circumstances, intended to serve as religious rulings or fatwas. '
+      'Muslim AI does not hold the authority of a mufti and cannot provide official religious guidance. '
+      'For any specific religious questions or rulings, you must consult a qualified scholar who is authorized to provide such guidance.';
+
+  // Error Messages
+  static const String errorTitle = 'Error';
+  static const String enterEmailError = 'Please enter your email';
+  static const String enterPasswordError = 'Please enter your password';
+  static const String loginFailedTitle = 'Login Failed';
+
+
+
+
+
+
+
 // ============================================================
   // VERIFY EMAIL SCREEN
   // ============================================================

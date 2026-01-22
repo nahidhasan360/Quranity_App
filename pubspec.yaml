@@ -56,6 +56,11 @@ dependencies:
   video_player: ^2.8.7
   cached_network_image: ^3.3.1
 
+
+
+  ## lottery animation
+  lottie: ^3.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -79,6 +84,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/fonts/
+    - assets/animations/
 
 
   fonts:

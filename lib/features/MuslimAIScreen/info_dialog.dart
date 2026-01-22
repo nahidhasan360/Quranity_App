@@ -51,7 +51,7 @@ void muslimAiDialog(BuildContext context) {
               Flexible(
                 child: SingleChildScrollView(
                   child: Text(
-                    'To use this option, your permit must be imported from your device storage or online storage such as iCloud, Google Drive or DropBox. The permit cannot be imported directly from your email attachment.\n\nYou can import multiple permits one at a time. Each permit must be processed and directions appear in the editing text field before importing the next.',
+                    'Muslim AI is not a mufti and does not issue religious rulings or fatwas. It offers answers based on authentic Quranic teachings and Hadith, but should not be considered a substitute for advice from qualified scholars. For specific religious guidance, please consult a qualified scholar. By using Muslim AI, you acknowledge that the responses provided are for informational and reflective purposes only.',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,

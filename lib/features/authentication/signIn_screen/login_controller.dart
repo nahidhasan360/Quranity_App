@@ -2,110 +2,78 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quranity/app/routes/app_routes.dart';
 import '../../../core/constants/ app_strings.dart';
+import 'after_success_success_dialog/success_dialog.dart';
 
 class LoginController extends GetxController {
-  // Text Controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // Observable Variables
   final isPasswordHidden = true.obs;
   final isRememberMe = false.obs;
   final isLoading = false.obs;
 
-  // Toggle Password Visibility
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
   }
 
-  // Toggle Remember Me
   void toggleRememberMe() {
     isRememberMe.value = !isRememberMe.value;
   }
 
-  // Validation Methods
-  String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return AppStrings.emailRequired;
-    }
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(value)) {
-      return AppStrings.emailInvalid;
-    }
-    return null;
-  }
-
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return AppStrings.passwordRequired;
-    }
-    if (value.length < 8) {
-      return AppStrings.passwordMinLength;
-    }
-    return null;
-  }
-
-  // Sign In Method
-  void signIn() async {
-    // Validate fields
-    final emailError = validateEmail(emailController.text);
-    final passwordError = validatePassword(passwordController.text);
-
-    if (emailError != null) {
+  Future<void> signIn() async {
+    // Validation
+    if (emailController.text.trim().isEmpty) {
       Get.snackbar(
-        'Validation Error',
-        emailError,
-        snackPosition: SnackPosition.BOTTOM,
+        AppStrings.errorTitle,
+        AppStrings.enterEmailError,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        duration: const Duration(seconds: 3),
       );
       return;
     }
 
-    if (passwordError != null) {
+    if (passwordController.text.trim().isEmpty) {
       Get.snackbar(
-        'Validation Error',
-        passwordError,
-        snackPosition: SnackPosition.BOTTOM,
+        AppStrings.errorTitle,
+        AppStrings.enterPasswordError,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        duration: const Duration(seconds: 3),
       );
       return;
     }
-
-    // Start Loading
-    isLoading.value = true;
 
     try {
+      isLoading.value = true;
+
+      // TODO: Replace with your actual API call
       // Example:
-      // final response = await AuthService.login(
+      // final response = await authService.login(
       //   email: emailController.text.trim(),
-      //   password: passwordController.text,
-      //   rememberMe: isRememberMe.value,
+      //   password: passwordController.text.trim(),
       // );
 
-      await Future.delayed(const Duration(seconds: 2)); // Simulated API call
+      // Simulate API call
+      await Future.delayed(const Duration(seconds: 2));
 
-      // Success
-      Get.snackbar(
-        'Success',
-        AppStrings.loginSuccess,
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-        duration: const Duration(seconds: 2),
+      // Success - Show dialog with disclaimer
+      Get.dialog(
+        SuccessDialog(
+          onPressed: () {
+            Get.back();
+            Get.offAllNamed(AppRoutes.home);
+          },
+        ),
+        barrierDismissible: false,
+        barrierColor: Colors.black.withOpacity(0.75),
       );
-
-      // Navigate to Home
-      await Future.delayed(const Duration(milliseconds: 400));
-      Get.offAllNamed(AppRoutes.home);
     } catch (e) {
+      // Error handling
       Get.snackbar(
-        'Login Failed',
-        AppStrings.loginFailed,
-        snackPosition: SnackPosition.BOTTOM,
+        AppStrings.loginFailedTitle,
+        e.toString(),
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red,
         colorText: Colors.white,
         duration: const Duration(seconds: 3),
@@ -115,18 +83,20 @@ class LoginController extends GetxController {
     }
   }
 
-  // Navigate to Sign Up
-  void navigateToSignUp() {
-    Get.toNamed(AppRoutes.signup);
+  void navigateToForgotPassword() {
+    // TODO: Implement forgot password route
+    // Get.toNamed(AppRoutes.forgotPassword);
   }
 
-  // Navigate to Forgot Password
-  void navigateToForgotPassword() {
-    Get.toNamed(AppRoutes.forgotPassword);
+  void navigateToSignUp() {
+    // TODO: Implement sign up route
+    // Get.toNamed(AppRoutes.signUp);
   }
 
   @override
   void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
     super.onClose();
   }
 }
